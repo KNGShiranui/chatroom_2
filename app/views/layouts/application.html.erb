@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chatroom2</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header class ="header">
+      <% flash.each do |key, value| %>
+        <%= content_tag(:div, value, class: "#{key}") %>
+      <% end %>
+
+      <button type="button" class="btn btn-primary">Insta_clone</button>
+      
+      <% if logged_in? %>
+        <button type="button" class="btn btn-danger">
+          <%= link_to "Profile", user_path(current_user.id) %>
+        </button>
+        <button type="button" class="btn btn-warning">
+          <%= link_to "Logout", session_path(current_user.id), method: :delete %> 
+          <%# button_toにするという手も・・・ただし、見た目がボタンになる %>
+        </button>
+      <% else %>
+        <button type="button" class="btn btn-danger">
+          <%= link_to "Sign up", new_user_path %>
+        </button>
+        <button type="button" class="btn btn-warning">
+          <%= link_to "Login", new_session_path %>
+        </button>
+      <% end %>
+    </header>
+    <%= yield %>
+
+    <footer class ="footer">
+      <p><a href="https://bokete.jp/"</a>大喜利修羅王国へはこちら</p>
+    </footer>
+  </body> 
+</html>

@@ -1,0 +1,15 @@
+<h1>Log in</h1>
+<%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+<%# scope: :session, url: sessions_path, local: trueと書くのは、sessionにはモデル（データテーブル）がないから。 %>
+<%# railsの方向性として4KB以上の大容量のデータをsessionで扱うことは推奨されていないことからもモデルがない理由と整合性がある。 %>
+<%# scope: :sessionという書き方は、アソシエーションでの、「through: :favorites」で「favoritesを通過して」という意味とする %>
+<%# 書き方と似ている。 %>
+
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.submit "Log in" %>
+<% end %>

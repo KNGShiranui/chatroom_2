@@ -1,0 +1,14 @@
+<h1><%= @user.name %>のページ</h1>
+
+<p>メールアドレス: <%= @user.email %></p>
+<br>
+<h3><%= @user.name %>のページ</h3>
+
+<table>
+  <thead>
+  <tbody>
+    <td><%= link_to '詳細', user_path(@user) %></td>
+    <td><%= link_to '編集', edit_user_path(@user) if @user.id == current_user.id%></td>
+    <td><%= link_to '削除', user_path(@user), method: :delete, data: { confirm: '本当に削除してよいですか' } %></td>
+  </tbody>
+</table>
